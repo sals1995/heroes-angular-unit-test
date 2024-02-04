@@ -9,7 +9,7 @@ import { MessageService } from '../services/message/message.service';
 })
 export class MessagesComponent implements OnInit {
   
-  /**@param messageService: has a message string array*/
+  /**@param messageService has a message string array*/
   
   constructor(public messageService: MessageService) {}
 
