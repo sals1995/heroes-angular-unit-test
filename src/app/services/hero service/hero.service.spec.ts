@@ -1,7 +1,9 @@
 import { TestBed } from "@angular/core/testing";
-import { HttpTestingController, HttpClientTestingModule, provideHttpClientTesting } from "@angular/common/http/testing"
+import { HttpTestingController, provideHttpClientTesting } from "@angular/common/http/testing"
 import { MessageService } from "../message/message.service";
 import { HeroService } from "./hero.service";
+import { provideHttpClient } from "@angular/common/http";
+import { appConfig } from "../../app.config";
 
 describe("hero service:", () => {
   let messageServiceMock, service: HeroService, httpTesting: HttpTestingController
@@ -9,15 +11,15 @@ describe("hero service:", () => {
   beforeEach(() => {
     messageServiceMock = jasmine.createSpyObj(["add"])
 
-    TestBed.configureTestingModule({
+    TestBed.configureTestingModule(Object.assign({}, appConfig, {
       //1
-      imports: [HttpClientTestingModule],
       providers: [
-        // ... other test providers
+        // ... other test providers//
+        provideHttpClient(),
         provideHttpClientTesting(),
         { provide: MessageService, useValue: messageServiceMock }
       ],
-    });
+    }));
     //2
     httpTesting = TestBed.inject(HttpTestingController);
     //3

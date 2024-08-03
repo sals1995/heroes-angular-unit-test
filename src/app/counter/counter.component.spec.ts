@@ -1,13 +1,14 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { CounterComponent } from "./counter.component";
 import { By } from "@angular/platform-browser";
+import { appConfig } from "../app.config";
 
 describe('counter component: ', () => {
   let fixture: ComponentFixture<CounterComponent>,component:CounterComponent
   beforeEach(()=>{
-    TestBed.configureTestingModule({
+    TestBed.configureTestingModule(Object.assign({}, appConfig, {
       imports:[CounterComponent]
-    })
+    }))
    fixture= TestBed.createComponent(CounterComponent)
     component= fixture.componentInstance
     fixture.detectChanges()

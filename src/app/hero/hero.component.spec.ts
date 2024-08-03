@@ -1,12 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HeroComponent } from './hero.component';
 import { By } from '@angular/platform-browser';
+import { appConfig } from '../app.config';
 describe("hero component:", () => {
   let component: HeroComponent, fixture: ComponentFixture<HeroComponent>
   beforeEach(/* async */ () => {
-    /* await */ TestBed.configureTestingModule({
+    /* await */ TestBed.configureTestingModule(Object.assign({}, appConfig, {
       imports: [HeroComponent]
-    })/* .compileComponents() */
+    }))/* .compileComponents() */
 
     fixture = TestBed.createComponent(HeroComponent)
     component = fixture.componentInstance
