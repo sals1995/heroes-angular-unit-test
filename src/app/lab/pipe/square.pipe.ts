@@ -5,16 +5,13 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'squarePipe'
 })
 export class SquarePipeForLab implements PipeTransform {
-
-  transform(value: any): any {
-    
-    if(null!==value && !isNaN(value)){
-      return value*value;
+  
+  transform(value: number | string): number | string {
+    if (typeof value === 'number') {
+      return value * value;
     }
-    else{
-      return 'Not a number';
-    }
-      
+  
+    const num = parseInt(value);
+    return isFinite(num) ? num * num : 'not a number';
   }
-
 }
