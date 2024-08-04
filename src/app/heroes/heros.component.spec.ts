@@ -24,4 +24,12 @@ describe("heroes component (class only)", () => {
         expect(heroServiceMock.getHeroes).toHaveBeenCalled()
         expect(component.heroes).toHaveSize(2)
       })
+      it("expect after ngOninit() to set heroes[] and deleteHeroes from service to have been called",()=>{
+        component.ngOnInit()
+        component.delete({id:100,name:"superman",strength:10})
+        expect(heroServiceMock.getHeroes).toHaveBeenCalled()
+        expect(heroServiceMock.deleteHero).toHaveBeenCalled()//
+        expect(component.heroes).toHaveSize(1)
+      })
+      
 })
