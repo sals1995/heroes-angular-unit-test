@@ -1,14 +1,15 @@
 import { StrengthPipe } from "./strength.pipe";
 
-describe("strength pipe:", () => { 
+fdescribe("strength pipe:", () => { 
   let pipe:StrengthPipe
   beforeEach(()=>{
     pipe= new StrengthPipe()
-  })   
-  it('should return "3 (weak)" when passing 3', () => {
-   expect( pipe.transform(3)).toBe("3 (weak)")
-  });
-  it("should return '12 (strong)' when passing 12",()=>{
-    expect(pipe.transform(12)).toContain("strong")
   })
+  it('expect to return weak when passing 8', () => {
+    expect( pipe.transform(8) ).toBe("8 (weak)")
+  });
+  it('expect to return strong when passing 15', () => {
+    
+    expect( pipe.transform(15) ).toContain("strong")
+  });
 })

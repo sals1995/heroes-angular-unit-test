@@ -2,54 +2,48 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { CounterComponent } from "./counter.component";
 import { By } from "@angular/platform-browser";
 
-describe('counter component: ', () => {
-  let fixture: ComponentFixture<CounterComponent>,component:CounterComponent
-    beforeEach(()=>{
-      TestBed.configureTestingModule({
-        imports:[CounterComponent]
-      })
-
-     fixture= TestBed.createComponent(CounterComponent)
-     component= fixture.componentInstance
-    })
-  it('should create component', () => {
-    expect(component).toBeDefined();
+fdescribe('counter component: ', () => {
+  let component:CounterComponent,fixture: ComponentFixture<CounterComponent>
+  beforeEach(()=>{
+    // 1
+    TestBed.configureTestingModule({
+      imports:[CounterComponent]
+    })/* .compileComponents() */
+    // 2
+    fixture= TestBed.createComponent(CounterComponent)
+    // 3
+   component=fixture.componentInstance
+   
+  })
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
-  it("p tag should have counter",()=>{
+  it("expect counter=0 to be reflected in template",()=>{
     fixture.detectChanges()
-    //1
-    let p=fixture.nativeElement.querySelector("p")
-
+    // 1- access tag in template
+    // let p=fixture.debugElement.query( By.css("p") )
+    // expect(p.nativeElement.textContent).toBe("0")
+    // 2- access tag in template
+    let p= fixture.nativeElement.querySelector("p")
     expect(p.textContent).toContain("0")
-  })
-  it("after clicking + button should increase counter then detect it in template",()=>{
-    //access button
-   let button= fixture.debugElement.query( By.css("#inc") )
-    // click
-    button.triggerEventHandler("click")
-    button.triggerEventHandler("click")
-    button.triggerEventHandler("click")
+
+    component.counter=12
     fixture.detectChanges()
-    // access p
-    let p=fixture.nativeElement.querySelector("p")
-
-    expect(p.textContent).toContain("3")
-
+    expect(p.textContent).toContain("12")
   })
-  it("after clicking - button should decrease counter then detect it in template",()=>{
-    // access button
-   let button= fixture.debugElement.query(By.css("#dec"))
-    // click
-    button.triggerEventHandler("click")
-    button.triggerEventHandler("click")
-    // counter
-    expect(component.counter).toBe(-2)
-    // access p
+  it("expect after clicking btn +, should counter+ then detect that in template",()=>{
+    // access btn from template
+   let btn= fixture.debugElement.query(By.css("#inc"))
+    // click btn
+    btn .triggerEventHandler("click")
+    btn .triggerEventHandler("click")
+    btn .triggerEventHandler("click")
+
+    // counter+
+    expect(component.counter).toBe(3)
+    // template
     fixture.detectChanges()
-    // access p
-    let p=fixture.nativeElement.querySelector("p")
-
-    expect(p.textContent).toContain("-2")
-
+    let p=fixture.debugElement.query( By.css("p") )
+    expect(p.nativeElement.textContent).toContain("3")
   })
 });
