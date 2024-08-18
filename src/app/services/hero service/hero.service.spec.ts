@@ -6,7 +6,6 @@ import { MessageService } from "../message/message.service";
 
 describe("hero service:", () => {
   let httpTesting:HttpTestingController,service:HeroService,messageServiceSpy:jasmine.SpyObj<MessageService>;
-  let messageService:MessageService;
   let heroesUrl = 'http://localhost:3000/heroes'; 
 
     beforeEach(()=>{
@@ -22,18 +21,17 @@ describe("hero service:", () => {
         ],
       });
        httpTesting = TestBed.inject(HttpTestingController);
-      messageService= TestBed.inject(MessageService) as jasmine.SpyObj<MessageService>
        service= TestBed.inject(HeroService)
     })
   it('getHero() should send request correctly then put res in observable', () => {
       service.getHero(12).subscribe({next:(data)=>{
         expect(data.name).toBe("spider man")
+        expect(messageServiceSpy.add).toHaveBeenCalled()
       }})
 
 
      let testReq= httpTesting.expectOne(heroesUrl+"/"+12)
      expect(testReq.request.method).toBe("GET")
-
      testReq.flush({id:12,name:"spider man"})
 
      
