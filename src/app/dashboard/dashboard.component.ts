@@ -5,11 +5,10 @@ import { StrengthPipe } from '../pipes/strength/strength.pipe';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-dashboard',
-  standalone: true,  
-  imports:[StrengthPipe,RouterModule],
-  templateUrl: './dashboard.component.html',
-  styleUrls: [ './dashboard.component.css' ]
+    selector: 'app-dashboard',
+    imports: [StrengthPipe, RouterModule],
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
   heroes: Hero[] = [];

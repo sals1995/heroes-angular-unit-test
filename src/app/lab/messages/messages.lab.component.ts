@@ -4,7 +4,6 @@ import { MessageService } from '../../services/message/message.service';
 
 @Component({
   selector: 'app-messages-lab',
-  standalone: true,
   templateUrl: './messages.lab.component.html',
   styleUrls: ['./messages.lab.component.css']
 })

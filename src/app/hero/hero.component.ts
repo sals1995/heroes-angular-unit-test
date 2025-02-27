@@ -3,7 +3,7 @@ import { Hero } from '../hero';
 
 @Component({
   selector: 'app-hero',
-  standalone: true,
+  
   templateUrl: './hero.component.html',
   styleUrls:  ['./hero.component.css']
 })

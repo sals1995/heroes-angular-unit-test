@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'strength',
-  standalone: true,
+  
 })
 export class StrengthPipe implements PipeTransform {
   transform(value: number): string {
